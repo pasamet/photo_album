@@ -1,6 +1,6 @@
 name: photo_album
 description: "A sample photograph album application"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -8,10 +8,17 @@ environment:
   flutter: ^3.19.0
 
 dependencies:
+  auto_route: ^7.8.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.4
+  get_it: ^7.6.7
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
+  auto_route_generator: ^7.3.2
+  bloc_test: ^9.1.6
+  build_runner: ^2.4.8
   flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter

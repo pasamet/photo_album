@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:photo_album/ui/onboarding/onboarding_form.dart';
+import 'package:photo_album/ui/onboarding/form.dart';
 
 void main() {
   late Widget sut;
