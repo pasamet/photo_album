@@ -12,12 +12,19 @@ class OnboardingState {
   });
 }
 
+abstract class OnboardingActions {
+  void navigateToLogin();
+}
+
 class OnboardingCubit extends Cubit<OnboardingState> {
   final UserRepository _userRepository;
+  final OnboardingActions _actions;
 
   OnboardingCubit({
     required UserRepository userRepository,
+    required OnboardingActions onboardingActions,
   })  : _userRepository = userRepository,
+        _actions = onboardingActions,
         super(const OnboardingState());
 
   Future<void> onSubmit({
@@ -27,12 +34,12 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     if (state.saveEnabled) {
       emit(const OnboardingState(saveEnabled: false));
       try {
-        await _userRepository.signup(username: username, password: password);
+        await _userRepository.signUp(username: username, password: password);
+        _actions.navigateToLogin();
       } on Exception {
         emit(const OnboardingState());
         rethrow;
       }
-      // TODO: Navigate to login
     }
   }
 }

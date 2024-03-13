@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'ui/app/app.dart';
-import 'ui/app/di.dart';
+import 'app/app.dart';
+import 'app/di.dart';
 
 Future<void> main() async {
   await setupDependencies();
