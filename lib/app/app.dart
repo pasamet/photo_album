@@ -1,22 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import 'router.dart';
+class App extends StatelessWidget {
+  final RootStackRouter router;
 
-class App extends StatefulWidget {
-  const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  final router = AppRouter();
-
-  @override
-  void dispose() {
-    router.dispose();
-    super.dispose();
-  }
+  const App({
+    super.key,
+    required this.router,
+  });
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
