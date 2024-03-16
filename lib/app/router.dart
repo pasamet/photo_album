@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/widgets.dart';
 
 import '../data/user_repository.dart';
+import '../ui/album/screen.dart';
 import '../ui/home/screen.dart';
 import '../ui/login/screen.dart';
 import '../ui/onboarding/screen.dart';
@@ -38,6 +40,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: HomeRoute.page,
           initial: true,
+          guards: [_onboardedGuard, _loggedInGuard],
+        ),
+        AutoRoute(
+          page: AlbumRoute.page,
           guards: [_onboardedGuard, _loggedInGuard],
         ),
       ];
