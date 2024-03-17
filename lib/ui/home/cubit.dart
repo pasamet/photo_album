@@ -13,7 +13,7 @@ class HomeState {
 }
 
 abstract class HomeActions {
-  void navigateToAlbum(int albumId);
+  void navigateToAlbum(Album album);
   void showCreateAlbumDialog(void Function(String title) onSubmit);
   void showErrorToast(String title);
 }
@@ -47,7 +47,10 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void onAlbumPressed(int albumId) {
-    _actions.navigateToAlbum(albumId);
+    var album = state.albums.where((album) => album.id == albumId).firstOrNull;
+    if (album != null) {
+      _actions.navigateToAlbum(album);
+    }
   }
 
   void onAddAlbum() {

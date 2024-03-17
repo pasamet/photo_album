@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../app/router.dart';
+import '../../data/entities.dart';
 import 'content.dart';
 import 'cubit.dart';
 import 'dialog.dart';
@@ -29,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> implements HomeActions {
       );
 
   @override
-  void navigateToAlbum(int albumId) =>
-      context.router.navigate(AlbumRoute(albumId: albumId));
+  void navigateToAlbum(Album album) =>
+      context.router.navigate(AlbumRoute(album: album));
 
   @override
   Future<void> showCreateAlbumDialog(

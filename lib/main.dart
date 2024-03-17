@@ -8,6 +8,7 @@ import 'app/router.dart';
 final _getIt = GetIt.instance;
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setupDependencies();
   var router = _getIt<AppRouter>();
   var app = App(
