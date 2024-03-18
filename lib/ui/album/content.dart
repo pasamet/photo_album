@@ -31,11 +31,12 @@ class AlbumContent extends StatelessWidget {
   Widget _buildGridItem(BuildContext context, Photo photo) {
     AlbumCubit cubit() => BlocProvider.of<AlbumCubit>(context);
 
-    return GridTile(
-      footer: GridTileBar(title: Text(photo.title)),
-      child: InkResponse(
+    return InkResponse(
+      key: ValueKey(photo.id),
+      onTap: () => cubit().onPhotoPressed(photo.id),
+      child: GridTile(
+        footer: GridTileBar(title: Text(photo.title)),
         child: Image.network(photo.thumbnailUrl),
-        onTap: () => cubit().onPhotoPressed(photo.id),
       ),
     );
   }
