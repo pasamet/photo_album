@@ -22,16 +22,36 @@ class HomeContent extends StatelessWidget {
         ),
       );
 
-  Widget _buildList(HomeState state, BuildContext context) => ListView.builder(
-        itemCount: state.albums.length,
-        itemBuilder: (context, index) => _buildListItem(
-          context,
-          state.albums[index],
-        ),
-      );
+  Widget _buildList(HomeState state, BuildContext context) {
+    var length = state.albums.length;
+    return ListView.builder(
+      restorationId: 'albumsList',
+      itemCount: length + 1,
+      itemBuilder: (context, index) {
+        if (index == length) {
+          return _buildLoadMoreItem(context);
+        } else {
+          return _buildListItem(
+            context,
+            state.albums[index],
+          );
+        }
+      },
+    );
+  }
+
+  Widget _buildLoadMoreItem(BuildContext context) {
+    HomeCubit cubit() => BlocProvider.of<HomeCubit>(context);
+    cubit().loadMore();
+    return const SizedBox(
+      width: 48,
+      height: 48,
+      child: CircularProgressIndicator(),
+    );
+  }
 
   Widget _buildListItem(BuildContext context, Album album) {
-    HomeCubit cubit() => BlocProvider.of<HomeCubit>(context);
+    HomeCubit cubit() => context.read<HomeCubit>();
 
     var colorScheme = Theme.of(context).colorScheme;
     var listTile = ListTile(

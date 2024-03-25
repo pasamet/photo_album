@@ -46,6 +46,11 @@ class AlbumRepository implements Disposable {
   Future<void> _refreshAlbums() =>
       _albumsSubject.sink.addStream(Stream.fromFuture(_albumApi.getAlbums()));
 
+  Future<void> loadMoreAlbums() async {
+    var albums = await _albumApi.getAlbums();
+    _albumsSubject.value = _albumsSubject.value.followedBy(albums).toList();
+  }
+
   @override
   Future<void> onDispose() async {
     await _albumsSubject.close();
