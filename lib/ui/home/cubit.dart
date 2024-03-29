@@ -9,11 +9,7 @@ import '../../data/entities.dart';
 @immutable
 class HomeState {
   final List<Album> albums;
-  final bool loadingMore;
-  const HomeState({
-    this.albums = const [],
-    this.loadingMore = false,
-  });
+  const HomeState({this.albums = const []});
 }
 
 abstract class HomeActions {
@@ -59,15 +55,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   void onAddAlbum() {
     _actions.showCreateAlbumDialog(_onCreateAlbumDialogSubmit);
-  }
-
-  void loadMore() async {
-    if (!state.loadingMore) {
-      emit(HomeState(albums: state.albums, loadingMore: true));
-      await Future<void>.delayed(Duration(seconds: 10));
-      await _albumRepository.loadMoreAlbums();
-      emit(HomeState(albums: state.albums));
-    }
   }
 
   Future<void> onRemoveAlbum(int albumId) async {

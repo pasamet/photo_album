@@ -75,12 +75,6 @@ class _FakeAlbumRepository implements AlbumRepository {
 
   @override
   Future<void> removeAlbum(int albumId) => _notCalled();
-
-  @override
-  Future<void> loadMoreAlbums() {
-    // TODO: implement loadMoreAlbums
-    throw UnimplementedError();
-  }
 }
 
 class _FakeAlbumActions implements AlbumActions {
